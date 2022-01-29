@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 // import Characters from "../components/Characters";
 import Movies from "../components/Movies";
+import { userContext } from "../context/UserContext";
+import Post from "../components/Post/Post";
 
 export default function Home() {
     // fetch("https://thronesapi.com/api/v2/Characters")
 
-    const [active, setActive] = useState(false);
-
     const [characters, setCharacters] = useState([]);
 
-    useEffect(() => {
-        console.log("Efecto secundario");
-    }, [active]); // [] Solo se realiza una vez
+    const contexto = useContext(userContext)
+
+    const {user, setUser} = useContext(userContext)
+
 
     useEffect(() => {
         async function fetchData() {
@@ -22,7 +23,13 @@ export default function Home() {
 
         fetchData()
     }, []); //No omitir causa ciclos infinitos
-    return <div>    
-        <Movies movies={characters}/>
+
+    return <div>
+        <p>{user.nombre}</p>
+        <button onClick={() => {setUser({nombre:"Edgar", foto:"Mi foto"})}}>Iniciar Sesión</button>
+        <Movies movies={characters} />
+
+        <Post usuario={user}></Post>
+        {console.log(contexto)}
     </div>;
 }
