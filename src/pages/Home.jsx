@@ -11,7 +11,7 @@ export default function Home() {
 
     const contexto = useContext(userContext)
 
-    const {user, setUser} = useContext(userContext)
+    const { user, setUser } = useContext(userContext)
 
 
     useEffect(() => {
@@ -26,10 +26,9 @@ export default function Home() {
 
     return <div>
         <p>{user.nombre}</p>
-        <button onClick={() => {setUser({nombre:"Edgar", foto:"Mi foto"})}}>Iniciar Sesión</button>
-        <Movies movies={characters} />
-
         <Post usuario={user}></Post>
+        <button onClick={() => { setUser({ nombre: "Edgar", foto: "Mi foto" }) }}>Iniciar Sesión</button>
+        <Movies movies={characters} />
         {console.log(contexto)}
     </div>;
 }
