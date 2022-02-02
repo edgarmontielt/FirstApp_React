@@ -1,25 +1,41 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Fundamentos from "./pages/Fundamentos";
 import GoTAPI from "./pages/GoTAPI";
 import Home from "./pages/Home";
+import Home2 from "./pages/Home2";
+import { themeContext } from "./context/ThemeContext";
+import Login from "./pages/Login";
+import LoginState from "./pages/LoginState";
 
 const App = () => {
+  const { theme, changeTheme } = useContext(themeContext);
+
   return (
-    <>
-      <header className="header">Movies</header>
-      <div className="br"></div>
-      <main class="page">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/fundamentos" element={<Fundamentos />} />
-          <Route path="/got" element={<GoTAPI />} />
-        </Routes>
-      </BrowserRouter>
+    <div className={theme ? "main__dark" : "main__light"}>
+      <header>header</header>
+      <main className={`page`}>
+        <button
+          onClick={() => {
+            changeTheme();
+          }}
+        >
+          Claro/Oscuro
+        </button>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/loginState" element={<LoginState />} />
+            <Route path="/home2" element={<Home2 />} />
+            <Route path="/fundamentos" element={<Fundamentos />} />
+            <Route path="/got" element={<GoTAPI />} />
+          </Routes>
+        </BrowserRouter>
       </main>
-      <footer>Footer</footer>
-    </>
+
+      <footer>footer</footer>
+    </div>
   );
 };
 

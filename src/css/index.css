@@ -30,6 +30,15 @@ body {
   padding: 15px;
 }
 
+.main__dark{
+  background-color: rgb(24, 24, 24);
+  color: white;
+}
+.main__light{
+  background-color: rgb(238, 238, 238);
+  color: black;
+}
+
 .br {
   height: 2px;
   background: linear-gradient(20deg, rgb(39, 39, 113), rgb(53, 113, 53) 40%, rgb(113, 22, 22));
